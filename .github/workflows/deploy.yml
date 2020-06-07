@@ -1,0 +1,50 @@
+name: github pages
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  VIEW_ROOT: ./app
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: install dependencies
+        working-directory: ${{ env.VIEW_ROOT }}
+        run: yarn install --frozen-lockfile
+
+      - name: build
+        working-directory: ${{ env.VIEW_ROOT }}
+        run: |
+           yarn build
+           touch ./dist/.nojekyll
+
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ env.VIEW_ROOT }}/dist

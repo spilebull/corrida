@@ -1,0 +1,45 @@
+name: reviewdog
+
+env:
+  VIEW_ROOT: ./app
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+env:
+  VIEW_ROOT: ./app
+
+jobs:
+  eslint:
+    name: eslint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: install dependencies
+        working-directory: ${{ env.VIEW_ROOT }}
+        run: yarn install
+
+      - name: eslint review
+        uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-check
+          eslint_flags: 'app/src/**/*.{vue,ts,tsx,js}'
+
+      - name: eslint
+        working-directory: ${{ env.VIEW_ROOT }}
+        run: yarn lint
+
+  stylelint:
+    name: stylelint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: stylelint review
+        uses: reviewdog/action-stylelint@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-check
+          stylelint_input: 'app/src/**/*.{vue,css,scss}'

@@ -1,0 +1,51 @@
+name: build
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+env:
+  VIEW_ROOT: ./app
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: install dependencies
+        working-directory: ${{ env.VIEW_ROOT }}
+        run: yarn install --frozen-lockfile
+
+      - name: unit test
+        working-directory: ${{ env.VIEW_ROOT }}
+        run: yarn run test
+
+      - name: build
+        working-directory: ${{ env.VIEW_ROOT }}
+        run: yarn build
+
+      - name: Upload test coverage artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: coverage
+          path: coverage
