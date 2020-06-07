@@ -25,12 +25,12 @@ export default class AppButton extends Vue {
   box-shadow: 0.5px 0.5px;
 }
 .square:hover {
-  color: #ffffff;
+  color: #fff;
   background-color: #4fc08d;
 }
 .round {
   -webkit-appearance: none;
-  color: #ffffff;
+  color: #fff;
   background-color: #4fc08d;
   font-weight: bold;
   text-decoration: none;

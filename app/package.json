@@ -5,7 +5,9 @@
   "scripts": {
     "lint": "vue-cli-service lint --no-fix",
     "lint:fix": "vue-cli-service lint",
-    "eslint": "eslint './**/*.{vue,ts,tsx,js}'",
+    "eslint": "eslint './**/*.{vue,ts,js}'",
+    "stylelint": "stylelint './**/*.{vue,css,scss}'",
+    "format:stylesheet": "prettier-stylelint --quiet --write './**/*.{vue,css,scss}'",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test": "(eslint lib || true) && jest",
@@ -14,12 +16,17 @@
   "lint-staged": {
     "*.{js,ts,vue}": [
       "eslint --fix",
+      "stylelint --fix",
       "git add"
     ]
   },
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
+    "prettier-stylelint": "^0.4.2",
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-scss": "^3.17.2",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.4.2",
@@ -53,6 +60,7 @@
     "prettier": "^2.0.5",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.0",
+    "stylelint": "^13.6.0",
     "typescript": "~3.9.2",
     "vue-cli-plugin-vuetify": "~2.0.5",
     "vue-template-compiler": "^2.6.11",

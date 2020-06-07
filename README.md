@@ -1,10 +1,11 @@
-# Vue in Atomic Design
+Vue in Atomic Design
+=====
 
-[![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/) ![npm](https://img.shields.io/npm/v/npm) ![platform](https://img.shields.io/powershellgallery/p/DNS.1.1.1.1) 
+![build](https://github.com/spilebull/corrida/workflows/build/badge.svg) ![reviewdog](https://github.com/spilebull/corrida/workflows/reviewdog/badge.svg) [![vue2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/) ![npm](https://img.shields.io/npm/v/npm) ![platform](https://img.shields.io/powershellgallery/p/DNS.1.1.1.1)
 
 ## Atomic Design
-![atomic-design](https://user-images.githubusercontent.com/54832071/81474000-a5c47f00-923d-11ea-8ef7-ff089ecf49e2.png)
 
+![atomic-design](https://user-images.githubusercontent.com/54832071/81474000-a5c47f00-923d-11ea-8ef7-ff089ecf49e2.png)
 
 ### Usage
 
@@ -31,6 +32,7 @@
 ```
 
 ### Directory structure
+
 ```tree
 ├── Dockerfile
 ├── .vscode
@@ -84,7 +86,9 @@
 ```
 
 ### Visual studio code Setting
+
 ![vscode](https://user-images.githubusercontent.com/54832071/81412727-3ee09080-917f-11ea-9f29-d9a1fe5cf557.png)
+
 ```json
 {
   "editor.fontSize": 14,
@@ -146,6 +150,7 @@
 ```
 
 ### Sample Pages
+
 - [TOP](http://localhost:8080/) `http://localhost:8080/`
 - [SAMPLE](http://localhost:8080/sample) `http://localhost:8080/sample`
 - [ABOUT](http://localhost:8080/about) `http://localhost:8080/about`
