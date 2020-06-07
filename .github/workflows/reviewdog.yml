@@ -8,9 +8,14 @@ env:
   VIEW_ROOT: ./app
 
 jobs:
-  eslint:
-    name: eslint
-    runs-on: ubuntu-latest
+  lint:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+        os: [ubuntu-latest]
+
     steps:
       - uses: actions/checkout@v1
 
@@ -22,16 +27,10 @@ jobs:
           workdir: ${{ env.VIEW_ROOT }}
           eslint_flags: './**/*.{vue,ts,tsx,js}'
 
-  stylelint:
-    name: stylelint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-
       - name: stylelint review
         uses: reviewdog/action-stylelint@v1
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
-          workdir: ${{ env.VIEW_ROOT }}
+          stylelint_config: 'stylelint-config-recommended'
           stylelint_input: './**/*.{vue,css,scss}'
