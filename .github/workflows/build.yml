@@ -34,9 +34,13 @@ jobs:
         working-directory: ${{ env.VIEW_ROOT }}
         run: yarn install --frozen-lockfile
 
-      - name: lint check
+      - name: eslint check
         working-directory: ${{ env.VIEW_ROOT }}
-        run: yarn lint
+        run: yarn eslint
+
+      - name: stylelint check
+        working-directory: ${{ env.VIEW_ROOT }}
+        run: yarn stylelint
 
       - name: unit test
         working-directory: ${{ env.VIEW_ROOT }}
