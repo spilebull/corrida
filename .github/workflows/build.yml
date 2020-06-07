@@ -1,8 +1,6 @@
 name: build
 
-on:
-  pull_request:
-    types: [opened, synchronize]
+on: [push]
 
 env:
   VIEW_ROOT: ./app
@@ -35,6 +33,10 @@ jobs:
       - name: install dependencies
         working-directory: ${{ env.VIEW_ROOT }}
         run: yarn install --frozen-lockfile
+
+      - name: lint check
+        working-directory: ${{ env.VIEW_ROOT }}
+        run: yarn lint
 
       - name: unit test
         working-directory: ${{ env.VIEW_ROOT }}
