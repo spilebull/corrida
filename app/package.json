@@ -6,7 +6,7 @@
     "lint": "vue-cli-service lint --no-fix",
     "lint:fix": "vue-cli-service lint",
     "eslint": "eslint './**/*.{vue,ts,js}'",
-    "stylelint": "stylelint --fix './**/*.{vue,css,scss}'",
+    "stylelint": "stylelint './**/*.{vue,css,scss}'",
     "format:stylesheet": "prettier-stylelint --quiet --write './**/*.{vue,css,scss}'",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
