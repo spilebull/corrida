@@ -43,9 +43,3 @@ jobs:
       - name: build
         working-directory: ${{ env.VIEW_ROOT }}
         run: yarn build
-
-      - name: Upload test coverage artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: coverage
-          path: coverage

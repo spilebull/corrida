@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "vue-cli-service lint --no-fix",
     "lint:fix": "vue-cli-service lint",
-    "eslint": "eslint './**/*.{vue,ts,tsx,js}'",
+    "eslint": "eslint './**/*.{vue,ts,js}'",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test": "(eslint lib || true) && jest",

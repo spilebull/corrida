@@ -1,7 +1,8 @@
 /dist/
 /node_modules/
 /public/
-/*.js
-/package.json
-/package-lock.json
-/yarn-lock.json
+package.json
+package-lock.json
+yarn-lock.json
+*.vue
+*.vuex

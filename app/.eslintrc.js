@@ -17,6 +17,16 @@ module.exports = {
   plugins: ['vue', 'prettier'],
   rules: {
     // --------------------------------------------------
+    // 一般
+    // --------------------------------------------------
+    // インデント幅が2でなければLinterエラー。
+    indent: ['off', 2],
+    // console.log() を本番へ許可しない
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    // debugger を本番へ許可しない
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+
+    // --------------------------------------------------
     // 優先度A: 必須
     // --------------------------------------------------
     // プロパティで非同期アクションを許可しない
@@ -303,7 +313,7 @@ module.exports = {
     // --------------------------------------------------
     // 属性の順序を強制
     'vue/attributes-order': [
-      'warn',
+      'error',
       {
         order: [
           'DEFINITION',
@@ -332,7 +342,7 @@ module.exports = {
     'vue/no-v-html': ['error'],
     // コンポーネントのプロパティの順序を強制
     'vue/order-in-components': [
-      'warn',
+      'error',
       {
         order: [
           'el',
@@ -386,18 +396,24 @@ module.exports = {
         ignores: []
       }
     ],
+    // スクリプト内でのインデント設定
+    'vue/script-indent': [
+      'error',
+      2,
+      {
+        baseIndent: 0,
+        switchCase: 0,
+        ignores: []
+      }
+    ],
     // 不必要な()を許可しない
     'no-extra-parens': ['error'],
     // 複数のスペースの使用を許可しない
     'no-multi-spaces': ['error'],
-    // console.log() を本番へ許可しない
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    // debugger を本番へ許可しない
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     // ジェネレータ関数で*の周りに間隔を強制
     'generator-star-spacing': ['off'],
     // Prettier ルール設定（.prettierrc.js）
-    'prettier/prettier': ['off']
+    'prettier/prettier': ['error']
   },
   parser: 'vue-eslint-parser',
   parserOptions: {
