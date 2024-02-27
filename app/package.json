@@ -21,7 +21,7 @@
     ]
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.28.0",
     "core-js": "^3.6.4",
     "prettier-stylelint": "^0.4.2",
     "stylelint-config-prettier": "^8.0.1",
